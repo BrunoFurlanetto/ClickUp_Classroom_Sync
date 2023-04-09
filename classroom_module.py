@@ -49,7 +49,7 @@ def consult_works(course, service):
                     hour=work['dueTime']['hours'],
                     minute=work['dueTime'].get('minutes', 00)
                 ) + utc_offset
-
+            print(work['id'])
             works.append({
                 'id': work['id'],
                 'name': work['title'],
