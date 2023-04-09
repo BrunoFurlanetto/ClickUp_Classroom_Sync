@@ -4,7 +4,7 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.errors import HttpError
 
 from auth import authentication
-from classroom import consult_courses
+from classroom_module import consult_courses
 from local_settings import *
 
 # --------------------------------- Block to check login requirement ---------------------------------------------------
