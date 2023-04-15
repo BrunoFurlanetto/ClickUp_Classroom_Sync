@@ -28,10 +28,9 @@ class BaseRepository:
         return data[0]
 
     def insert(self, **kwargs):
-
         with DBConnectionHandler() as db:
-            data_insert = self.model().insert().values(kwargs)
-            db.session.execute(data_insert)
+            data_insert = self.model(**kwargs)
+            db.session.add(data_insert)
             db.session.commit()
 
     def delete(self, **kwargs):
