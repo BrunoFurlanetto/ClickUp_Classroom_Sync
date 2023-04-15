@@ -6,7 +6,7 @@ from googleapiclient.errors import HttpError
 from auth import authentication
 from classroom_module import consult_courses
 from local_settings import *
-
+from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
 # --------------------------------- Block to check login requirement ---------------------------------------------------
 credentials = None
 
