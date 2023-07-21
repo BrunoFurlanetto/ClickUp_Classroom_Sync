@@ -1,7 +1,9 @@
+import os
+
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 
-from local_settings import *
+from classroom_module.config.scopes import scopes
 
 
 def authentication(creds):
@@ -10,10 +12,10 @@ def authentication(creds):
         creds.refresh(Request())
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            'credentials.json', scopes)
+            '../credentials.json', scopes)
         creds = flow.run_local_server(port=0)
     # Save the credentials for the next run
-    with open('token.json', 'w') as token:
+    with open('../token.json', 'w') as token:
         token.write(creds.to_json())
 
     return creds

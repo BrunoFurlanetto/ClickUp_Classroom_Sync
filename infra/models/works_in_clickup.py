@@ -1,21 +1,21 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, BigInteger
+from sqlalchemy.orm import declarative_base, relationship
 
 from infra.models.courses_in_classroom import CoursesInClassroom
+from infra.configs.base import Base
 
-ModelBaseWorksInClickUp = declarative_base()
 
-
-class WorksInClickUp(ModelBaseWorksInClickUp):
+class WorksInClickUp(Base):
     __tablename__ = 'works_in_clickup'
 
-    work_id = Column(Integer, primary_key=True)
-    task_clickup_id = Column(Integer, unique=True, nullable=False)
+    work_id = Column(BigInteger, primary_key=True)
+    task_clickup_id = Column(BigInteger, unique=True, nullable=False)
     work_title = Column(String(255), nullable=False)
     due_date = Column(DateTime, nullable=True)
     description = Column(Text, nullable=True)
     link_to_work = Column(Text, nullable=True)
-    classrom_course_id = Column(Integer, ForeignKey(CoursesInClassroom.course_name))
+    classrom_course_id = Column(BigInteger, ForeignKey('courses_in_classroom.course_id'))
+    classroom_course = relationship('CoursesInClassroom', backref='course', lazy=True)
 
     def __str__(self):
         return self.work_title
