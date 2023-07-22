@@ -7,7 +7,7 @@ from googleapiclient.errors import HttpError
 from classroom_module.auth import authentication
 from classroom_module.classroom_utils import consult_courses
 from classroom_module.config.scopes import scopes
-from clickup_module.clickup_utils import create_task_in_list, delete_task_in_clickup
+from clickup_module.clickup_utils import create_task_in_list, delete_task_in_clickup, verify_lists
 from infra.repository.courses_in_classroom_repository import CoursesInClassroomRepository
 from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
 
@@ -21,6 +21,7 @@ if not credentials or not credentials.valid:
     credentials = authentication(credentials)
 # ----------------------------------------------------------------------------------------------------------------------
 try:
+    verify_lists()
     courses_and_works = consult_courses(credentials, 'ACTIVE')
 
     for course in courses_and_works:
