@@ -8,4 +8,4 @@ from infra.repository.courses_in_classroom_repository import CoursesInClassroomR
 from infra.repository.lists_in_clickup_repository import ListsInClickUpRepository
 
 # populate table with 100 different data
-print(CoursesInClassroomRepository().filter(course_id=10).clickup_list_id)
+print(CoursesInClassroomRepository().select_all())

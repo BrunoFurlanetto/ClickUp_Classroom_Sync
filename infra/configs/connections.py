@@ -1,10 +1,15 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class DBConnectionHandler:
     def __init__(self):
-        self.__connection_string = 'sqlite:///database.db'
+        self.__connection_string = os.getenv('url_db')
         self.__engine = self.__create_database_engine()
         self.session = None
 

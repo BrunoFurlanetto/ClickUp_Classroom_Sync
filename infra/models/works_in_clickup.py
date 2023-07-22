@@ -9,7 +9,7 @@ class WorksInClickUp(Base):
     __tablename__ = 'works_in_clickup'
 
     work_id = Column(BigInteger, primary_key=True)
-    task_clickup_id = Column(BigInteger, unique=True, nullable=False)
+    task_clickup_id = Column(String(255), unique=True, nullable=False)
     work_title = Column(String(255), nullable=False)
     due_date = Column(DateTime, nullable=True)
     description = Column(Text, nullable=True)

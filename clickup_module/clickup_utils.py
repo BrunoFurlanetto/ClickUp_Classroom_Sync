@@ -1,10 +1,8 @@
 import os
-from datetime import datetime, timedelta
-from pathlib import Path
-
 import requests
 
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
@@ -27,5 +25,15 @@ def create_task_in_list(list_id, work_name, description, work_link, due_datetime
 
     r = requests.post(url=url, json=new_task, headers=request_header)
 
-    if r.status_code != 200:
-        print('List not found in ClickUp, check the ID registered in the database')
+    return r.status_code, r.json()['id']
+
+
+def delete_task_in_clickup(task_id):
+    url = "https://api.clickup.com/api/v2/task/" + task_id
+
+    request_header = {
+        'Authorization': os.getenv('clickup_api_key'),
+        'Content-Type': 'application/json'
+    }
+
+    r = requests.delete(url, headers=request_header)
