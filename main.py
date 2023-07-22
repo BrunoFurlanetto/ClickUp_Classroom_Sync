@@ -10,6 +10,7 @@ from classroom_module.config.scopes import scopes
 from clickup_module.clickup_utils import create_task_in_list, delete_task_in_clickup, verify_lists
 from infra.repository.courses_in_classroom_repository import CoursesInClassroomRepository
 from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
+from notifications.notifications import Alert
 
 # --------------------------------- Block to check login requirement ---------------------------------------------------
 credentials = None
@@ -48,7 +49,8 @@ try:
                         classrom_course_id=course['course_id'],
                     )
                 except Exception as e:
-                    print(e)
+                    Alert('DB error', f'Error connecting to local database!({e})').error()
                     delete_task_in_clickup(work_id)
 except HttpError as error:
+    Alert('Conecion error', f'Error when trying to communicate with the APIs!({error})').warning()
     print('An error occurred: %s' % error)
