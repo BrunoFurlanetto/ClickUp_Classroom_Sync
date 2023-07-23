@@ -1,56 +1,37 @@
-import os
-from datetime import datetime
+from googleapiclient.discovery import build
+from rocketry import Rocketry
+from rocketry.conds import daily, after_fail
 
-from google.oauth2.credentials import Credentials
-from googleapiclient.errors import HttpError
-
-from classroom_module.auth import authentication
-from classroom_module.classroom_utils import consult_courses
-from classroom_module.config.scopes import scopes
-from clickup_module.clickup_utils import create_task_in_list, delete_task_in_clickup, verify_lists
-from infra.repository.courses_in_classroom_repository import CoursesInClassroomRepository
+from classroom_module.auth import get_credentials
 from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
 from notifications.notifications import Alert
 
-# --------------------------------- Block to check login requirement ---------------------------------------------------
-credentials = None
+app = Rocketry()
 
-if os.path.exists('token.json'):
-    credentials = Credentials.from_authorized_user_file('token.json', scopes)
 
-if not credentials or not credentials.valid:
-    credentials = authentication(credentials)
-# ----------------------------------------------------------------------------------------------------------------------
-try:
-    verify_lists()
-    courses_and_works = consult_courses(credentials, 'ACTIVE')
+@app.task(daily.between('14', '20'), execution='thread')
+def verify_new_works():
+    service = build('classroom', 'v1', credentials=get_credentials())
+    results = service.courses().list().execute()
+    courses = results.get('courses', [])
 
-    for course in courses_and_works:
-        course_in_clickup = CoursesInClassroomRepository().get(course_id=int(course['course_id']))
+    for course in courses:
+        course_work_results = service.courses().courseWork().list(courseId=course['id']).execute()
+        course_work = course_work_results.get('courseWork', [])
 
-        for work in course['course_works']:
-            status_code, work_id = create_task_in_list(
-                course_in_clickup.clickup_list_id,
-                work['name'],
-                work['description'],
-                work['link_to_work'],
-                work['due_date']
-            )
+        for work in course_work:
+            if not WorksInClickUpRepository().get(work_id=int(work['id'])):
+                Alert(
+                    f'New Work in {course["name"]}',
+                    f'New Work present in {course["name"]}, initiated sync!'
+                ).warning()
 
-            if status_code == 200:
-                try:
-                    WorksInClickUpRepository().insert(
-                        work_id=work['id'],
-                        task_clickup_id=work_id,
-                        work_title=work['name'],
-                        due_date=work['due_date'],
-                        description=work['description'],
-                        link_to_work=work['link_to_work'],
-                        classrom_course_id=course['course_id'],
-                    )
-                except Exception as e:
-                    Alert('DB error', f'Error connecting to local database!({e})').error()
-                    delete_task_in_clickup(work_id)
-except HttpError as error:
-    Alert('Conecion error', f'Error when trying to communicate with the APIs!({error})').warning()
-    print('An error occurred: %s' % error)
+                raise Exception()
+
+
+app.task(daily.between('14', '20'), func_name='verify_new_courses', path='classroom_module/tasks.py', execution='thread')
+app.task(daily.between('14', '20'), func_name='verify_lists', path='clickup_module/tasks.py', execution='thread')
+app.task(after_fail(verify_new_works), func_name='add_new_work_in_clickup', path='main_task.py', execution='thread')
+
+if __name__ == "__main__":
+    app.run()

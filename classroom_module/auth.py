@@ -4,6 +4,7 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 
 from classroom_module.config.scopes import scopes
+from google.oauth2.credentials import Credentials
 
 
 def authentication(creds):
@@ -19,3 +20,15 @@ def authentication(creds):
         token.write(creds.to_json())
 
     return creds
+
+
+def get_credentials():
+    credentials = None
+
+    if os.path.exists('token.json'):
+        credentials = Credentials.from_authorized_user_file('token.json', scopes)
+
+    if not credentials or not credentials.valid:
+        credentials = authentication(credentials)
+
+    return credentials

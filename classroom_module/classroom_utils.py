@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
 from googleapiclient.discovery import build
-
 from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
 
 
