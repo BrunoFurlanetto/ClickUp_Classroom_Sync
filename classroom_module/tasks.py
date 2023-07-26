@@ -13,4 +13,12 @@ def verify_new_courses():
     for course in courses:
         if course['courseState'] == 'ACTIVE':
             if not CoursesInClassroomRepository().get(course_id=int(course['id'])):
-                create_list(course)
+
+                list_id = create_list(course)
+
+                if list_id:
+                    CoursesInClassroomRepository().insert(
+                        course_id=course['id'],
+                        course_name=course['name'],
+                        clickup_list_id=int(list_id),
+                    )

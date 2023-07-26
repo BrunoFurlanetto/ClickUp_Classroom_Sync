@@ -2,38 +2,24 @@ from datetime import datetime, timedelta
 
 from googleapiclient.discovery import build
 from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
+from utils import Loger
 
 
-def consult_courses(credentials, status_course=None):
+def consult_courses(credentials):
     service = build('classroom', 'v1', credentials=credentials)
     results = service.courses().list().execute()
-    courses = results.get('courses', [])
+    courses = [course for course in results.get('courses', []) if course["courseState"] == "ACTIVE"]
     courses_and_works = []
 
-    if not courses:
-        return 'No courses found'
+    for course in courses:
+        course_work_results = service.courses().courseWork().list(courseId=course['id']).execute()
+        course_work = course_work_results.get('courseWork', [])
 
-    if status_course:
-        for course in courses:
-            course_work_results = service.courses().courseWork().list(courseId=course['id']).execute()
-            course_work = course_work_results.get('courseWork', [])
-
-            if course['courseState'] == status_course and course_work:
-                courses_and_works.append({
-                    'course_id': course['id'],
-                    'course_name': course['name'],
-                    'course_works': consult_works(course_work),
-                })
-    else:
-        for course in courses:
-            course_work_results = service.courses().courseWork().list(courseId=course['id']).execute()
-            course_work = course_work_results.get('courseWork', [])
-
-            courses_and_works.append({
-                'course_id': course['id'],
-                'course_name': course['name'],
-                'course_works': consult_works(course_work),
-            })
+        courses_and_works.append({
+            'course_id': course['id'],
+            'course_name': course['name'],
+            'course_works': consult_works(course_work),
+        })
 
     return courses_and_works
 
