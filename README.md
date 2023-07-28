@@ -96,31 +96,7 @@ pip install -r requirements.txt
 To schedule the execution of the Python synchronization script for Google
 Classroom with ClickUp on Windows, you can use the system's Task Scheduler. Here's a summarized step-by-step guide:
 
-Step 1: Open the Task Scheduler:
-- Press `Win + R` to open the "Run" dialog. Type `taskschd.msc` and press Enter.
-
-Step 2: Create a new Task:
-- In the right panel, click on "Create Basic Task" to start the wizard.
-
-Step 3: Name and Description:
-- Enter a name and, optionally, a description for the task.
-
-Step 4: Choose the Trigger Type:
-- Select "At Startup" and click "Next".
-
-Step 5: Specify the Program to Run:
-- In this step, you should specify the path to the Pythonw interpreter (which
-   does not require the shell to be open to remain running) and the `main.py` script.
-
-Step 6: Define Other Settings (Optional):
-- You can adjust other settings, such as running the task only when a user is
-   logged in, setting privileges, and more.
-
-Step 7: Review Settings:
-- Review the settings you've defined to ensure they are correct.
-
-Step 8: Finish Configuration:
-- Click "Finish" to create the task.
+For more information [click here](https://github.com/BrunoFurlanetto/ClickUp_Classroom_Sync/blob/main/docs/task_scheduling_windowns.md).
 
 To ensure that the scheduling settings are correct, run the task and see if
 the status remains "Running".
