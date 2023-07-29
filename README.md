@@ -94,9 +94,7 @@ pip install -r requirements.txt
 ## Step 4: Task Scheduling
 
 To schedule the execution of the Python synchronization script for Google
-Classroom with ClickUp on Windows, you can use the system's Task Scheduler. Here's a summarized step-by-step guide:
-
-For more information [click here](https://github.com/BrunoFurlanetto/ClickUp_Classroom_Sync/blob/main/docs/task_scheduling_windowns.md).
+Classroom with ClickUp on Windows, you can use the system's Task Scheduler. For more information [click here](https://github.com/BrunoFurlanetto/ClickUp_Classroom_Sync/blob/main/docs/task_scheduling_windowns.md).
 
 To ensure that the scheduling settings are correct, run the task and see if
 the status remains "Running".
