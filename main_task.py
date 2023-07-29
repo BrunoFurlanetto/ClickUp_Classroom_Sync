@@ -11,7 +11,6 @@ from notifications.notifications import Alert
 
 def add_new_work_in_clickup():
     try:
-        # logger.info('Initiated sync')
         courses_and_works = consult_courses(get_credentials())
 
         for course in courses_and_works:
@@ -42,6 +41,6 @@ def add_new_work_in_clickup():
                             Alert('DB error', f'Error connecting to local database!({e})').error()
                             delete_task_in_clickup(work_id)
     except HttpError as error:
-        Alert('Conecion error', f'Error when trying to communicate with the APIs!({error})').error()
+        Alert('Connection error', f'Error when trying to communicate with the APIs!({error})').error()
     except Exception as e:
-        Alert('Unknown erro', f'Unknown error ({e}), please contact support').error()
+        Alert('Unknown error', f'Unknown error ({e}), please contact support').error()

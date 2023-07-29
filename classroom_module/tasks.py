@@ -8,7 +8,7 @@ from infra.repository.courses_in_classroom_repository import CoursesInClassroomR
 def verify_new_courses():
     service = build('classroom', 'v1', credentials=get_credentials())
     results = service.courses().list().execute()
-    courses = results.get('courses', [])
+    courses = [course for course in results.get('courses', []) if course['courseState'] == 'ACTIVE']
 
     for course in courses:
         if course['courseState'] == 'ACTIVE':

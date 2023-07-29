@@ -5,9 +5,10 @@ from rocketry.conds import daily, after_fail
 from classroom_module.auth import get_credentials
 from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
 from notifications.notifications import Alert
-from utils import test_conection, Loger
+from utils import test_connection, Loger
 import argparse
 
+global logger
 app = Rocketry()
 app.task(daily.between('14', '20'), func_name='verify_new_courses', path='classroom_module/tasks.py')
 app.task(daily.between('14', '20'), func_name='verify_lists', path='clickup_module/tasks.py')
@@ -16,7 +17,8 @@ app.task(daily.between('14', '20'), func_name='verify_lists', path='clickup_modu
 @app.task(daily.between('14', '20'))
 def verify_new_works():
     logger.info('Initiated')
-    test_conection(logger)
+    test_connection()
+    logger.info('Connection success')
     service = build('classroom', 'v1', credentials=get_credentials())
     results = service.courses().list().execute()
     courses = [c for c in results.get('courses', []) if c["courseState"] == "ACTIVE"]
@@ -26,7 +28,7 @@ def verify_new_works():
         if course['courseState'] == 'ACTIVE':
             course_work_results = service.courses().courseWork().list(courseId=course['id']).execute()
             course_work = course_work_results.get('courseWork', [])
-            logger.info(f'Course consult initiatte: {course["name"]}')
+            logger.info(f'Course consult initiate: {course["name"]}')
 
             for work in course_work:
                 if not WorksInClickUpRepository().get(work_id=int(work['id'])):

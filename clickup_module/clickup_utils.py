@@ -105,7 +105,7 @@ def create_list(course):
         return ListsInClickUpRepository().get(list_name=course['name']).list_id
     else:
         Alert(
-            'Conection with ClickUp API Failed',
+            'Connection with ClickUp API Failed',
             f'Connection to ClickUp API failed while trying to add a list. Classroom course not synced ({r.json()["err"]})'
         ).warning()
 
@@ -122,7 +122,7 @@ def delete_list(list_id):
 
     if response.status_code != 200:
         Alert(
-            'Conection with ClickUp API Failed',
+            'Connection with ClickUp API Failed',
             f'Connection to ClickUp API failed while trying to delete a list. There are remote lists not saved in the '
             f'local database! ({response.json()["err"]})'
         ).warning()

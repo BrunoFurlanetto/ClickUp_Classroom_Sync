@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/class_sync_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="database.db" uuid="55984386-74be-402e-a01a-9130702dd33c">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\bruno\OneDrive\Área de Trabalho\Projetos\ClickUp Classroom Sync\database.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

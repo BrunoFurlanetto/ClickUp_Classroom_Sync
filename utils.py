@@ -16,7 +16,7 @@ class Loger:
             print(f'[ DEBUG ] {msg}')
 
 
-def test_conection(logger):
+def test_connection():
     while True:
         url = 'https://www.google.com'
 
@@ -24,8 +24,6 @@ def test_conection(logger):
             response = requests.get(url, timeout=5)  # Define o tempo limite da solicitação em 5 segundos
             response.raise_for_status()
         except requests.exceptions.RequestException as e:
-            logger.info(f'Test conection: Error ({e})')
             sleep(300)
         else:
-            logger.info('Test conection: Success')
             return
