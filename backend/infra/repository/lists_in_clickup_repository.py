@@ -1,5 +1,5 @@
-from infra.models.lists_in_clickup import ListsInClickUp
-from infra.repository.base_repository import BaseRepository
+from ..models.lists_in_clickup import ListsInClickUp
+from ..repository.base_repository import BaseRepository
 
 
 class ListsInClickUpRepository(BaseRepository):

@@ -1,8 +1,8 @@
 from googleapiclient.discovery import build
 
-from classroom_module.auth import get_credentials
-from clickup_module.clickup_utils import create_list
-from infra.repository.courses_in_classroom_repository import CoursesInClassroomRepository
+from backend.classroom_module.auth import get_credentials
+from backend.clickup_module.clickup_utils import create_list
+from backend.infra.repository.courses_in_classroom_repository import CoursesInClassroomRepository
 
 
 def verify_new_courses():

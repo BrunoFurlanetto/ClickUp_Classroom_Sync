@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, BigInteger, ForeignKey
 from sqlalchemy.orm import relationship
 
-from infra.configs.base import Base
+from ..configs.base import Base
 
 
 class ListsInClickUp(Base):

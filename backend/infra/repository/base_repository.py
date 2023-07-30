@@ -1,6 +1,6 @@
 from sqlalchemy import and_
 
-from infra.configs.connections import DBConnectionHandler
+from ..configs.connections import DBConnectionHandler
 
 
 class BaseRepository:

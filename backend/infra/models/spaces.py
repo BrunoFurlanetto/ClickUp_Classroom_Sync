@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, BigInteger
+from sqlalchemy import Column, String, BigInteger
 
-from infra.configs.base import Base
+from ..configs.base import Base
 
 
 class Spaces(Base):

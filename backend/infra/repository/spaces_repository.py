@@ -1,5 +1,5 @@
-from infra.models.spaces import Spaces
-from infra.repository.base_repository import BaseRepository
+from backend.infra.models.spaces import Spaces
+from backend.infra.repository.base_repository import BaseRepository
 
 
 class SpacesRepository(BaseRepository):

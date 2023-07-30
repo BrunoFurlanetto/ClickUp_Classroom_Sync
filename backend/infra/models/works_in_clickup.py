@@ -1,8 +1,7 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, BigInteger
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, String, DateTime, Text, ForeignKey, BigInteger
+from sqlalchemy.orm import relationship
 
-from infra.models.courses_in_classroom import CoursesInClassroom
-from infra.configs.base import Base
+from ..configs.base import Base
 
 
 class WorksInClickUp(Base):

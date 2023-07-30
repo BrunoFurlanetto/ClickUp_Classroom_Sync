@@ -10,8 +10,8 @@ import argparse
 
 global logger
 app = Rocketry()
-app.task(daily.between('14', '20'), func_name='verify_new_courses', path='classroom_module/tasks.py')
-app.task(daily.between('14', '20'), func_name='verify_lists', path='clickup_module/tasks.py')
+app.task(daily.between('14', '20'), func_name='verify_new_courses', path='backend/classroom_module/tasks.py')
+app.task(daily.between('14', '20'), func_name='verify_lists', path='backend/clickup_module/tasks.py')
 
 
 @app.task(daily.between('14', '20'))
@@ -44,12 +44,12 @@ def verify_new_works():
     logger.info(f'Finish consult. All Synced')
 
 
-app.task(after_fail(verify_new_works), func_name='add_new_work_in_clickup', path='main_task.py')
+app.task(after_fail(verify_new_works), func_name='add_new_work_in_clickup', path='backend/main_task.py')
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-l", "--logger", dest="logger", help="Log level", default=0, type=int)
+    parser.add_argument("-l", "--logger", dest="logger", help="Log level", default=1, type=int)
     args = parser.parse_args()
     logger = Loger(args.logger)
 

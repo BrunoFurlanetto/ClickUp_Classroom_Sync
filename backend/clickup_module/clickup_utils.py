@@ -3,9 +3,9 @@ import os
 import requests
 from dotenv import load_dotenv
 
-from infra.repository.lists_in_clickup_repository import ListsInClickUpRepository
-from infra.repository.spaces_repository import SpacesRepository
-from notifications.notifications import Alert
+from backend.infra.repository.lists_in_clickup_repository import ListsInClickUpRepository
+from backend.infra.repository.spaces_repository import SpacesRepository
+from backend.notifications.notifications import Alert
 
 load_dotenv()
 

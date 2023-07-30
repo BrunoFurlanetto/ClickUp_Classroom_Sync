@@ -9,7 +9,7 @@
 database.db
 
 # Google API credentials
-credentials.json
+backend/credentials.json
 token.json
 
 # User-specific stuff
@@ -244,7 +244,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+backend/.env
 .venv
 env/
 venv/

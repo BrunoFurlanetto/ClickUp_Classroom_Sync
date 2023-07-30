@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta
 
 from googleapiclient.discovery import build
-from infra.repository.works_in_clickup_repository import WorksInClickUpRepository
-from utils import Loger
+from backend.infra.repository.works_in_clickup_repository import WorksInClickUpRepository
 
 
 def consult_courses(credentials):

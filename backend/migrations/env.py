@@ -5,11 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from infra.configs.base import Base
-from infra.models.lists_in_clickup import ListsInClickUp
-from infra.models.courses_in_classroom import CoursesInClassroom
-from infra.models.works_in_clickup import WorksInClickUp
-from infra.models.spaces import Spaces
+from backend.infra.configs.base import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

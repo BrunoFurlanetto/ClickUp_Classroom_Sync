@@ -3,9 +3,9 @@ import os
 import requests
 from dotenv import load_dotenv
 
-from clickup_module.clickup_utils import save_list_in_db
-from infra.repository.lists_in_clickup_repository import ListsInClickUpRepository
-from infra.repository.spaces_repository import SpacesRepository
+from backend.clickup_module.clickup_utils import save_list_in_db
+from backend.infra.repository.lists_in_clickup_repository import ListsInClickUpRepository
+from backend.infra.repository.spaces_repository import SpacesRepository
 
 load_dotenv()
 
