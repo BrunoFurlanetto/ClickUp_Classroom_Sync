@@ -4,7 +4,7 @@ In Windows it is necessary to make use of the task scheduler of the operating sy
 itself and for that, the following steps must be followed.
 
 Step 1: Open the Task Scheduler:
-- Press `Win + R` to open the "Run" dialog. Type `taskschd.msc` and press Enter.
+- Press `Win + R` to open the ``Run`` dialog. Type `taskschd.msc` and press Enter.
 
 Step 2: Create a new Task:
 - In the right panel, click on "Create Basic Task" to start the wizard.
@@ -19,7 +19,7 @@ Step 5: Select the action:
 - Select "Start a program" and click "Next".
 
 Step 6: Specify the Program to Run:
-- In this step, you should specify the path to the **Pythonw** interpreter (which
+- In this step, you should specify the path to the ``Pythonw`` interpreter (which
    does not require the shell to be open to remain running) and the `main.py` script:
   - In "Program/Script" put the path to the `Pythonw.exe` file present in the 
     project's venv.
