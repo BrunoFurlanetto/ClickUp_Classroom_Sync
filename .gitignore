@@ -8,9 +8,6 @@
 # SQlite database
 database.db
 
-# Sketch the README
-docs/readme-pt.md
-
 # Google API credentials
 credentials.json
 token.json
