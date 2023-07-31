@@ -20,7 +20,7 @@ To read the documentation in Portuguese [click here](https://github.com/BrunoFur
 1. Clone the project repository:
 
 ```bash
-git clone https://github.com/your-username/google-classroom-clickup-sync.git
+git clone https://github.com/BrunoFurlanetto/ClickUp_Classroom_Sync.git
 
 cd google-classroom-clickup-sync
 ```
