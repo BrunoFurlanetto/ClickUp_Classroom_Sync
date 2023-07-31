@@ -1,7 +1,9 @@
 from sqlalchemy import Column, String, BigInteger, ForeignKey
 from sqlalchemy.orm import relationship
 
-from ..configs.base import Base
+from backend.infra.configs.base import Base
+
+from backend.infra.models.spaces import Spaces
 
 
 class ListsInClickUp(Base):

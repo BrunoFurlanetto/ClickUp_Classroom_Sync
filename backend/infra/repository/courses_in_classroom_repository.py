@@ -1,5 +1,5 @@
-from ..models.courses_in_classroom import CoursesInClassroom
-from ..repository.base_repository import BaseRepository
+from backend.infra.models.courses_in_classroom import CoursesInClassroom
+from backend.infra.repository.base_repository import BaseRepository
 
 
 class CoursesInClassroomRepository(BaseRepository):
