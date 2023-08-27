@@ -23,7 +23,7 @@ def verify_new_works():
     results = service.courses().list().execute()
     courses = [c for c in results.get('courses', []) if c["courseState"] == "ACTIVE"]
     logger.info(f'Courses in class consulted. Find {len(courses)} courses active.')
-
+    Alert('Synchronization initiated', 'Synchronization initiated').success()
     for course in courses:
         if course['courseState'] == 'ACTIVE':
             course_work_results = service.courses().courseWork().list(courseId=course['id']).execute()

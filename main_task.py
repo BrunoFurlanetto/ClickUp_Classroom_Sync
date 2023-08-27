@@ -17,6 +17,7 @@ def add_new_work_in_clickup():
             course_in_clickup = CoursesInClassroomRepository().get(course_id=int(course['course_id']))
 
             if course['course_works']:
+
                 for work in course['course_works']:
                     status_code, work_id = create_task_in_list(
                         course_in_clickup.clickup_list_id,

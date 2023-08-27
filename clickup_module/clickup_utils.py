@@ -23,7 +23,7 @@ def create_task_in_list(list_id, work_name, description, work_link, due_datetime
         'description': f'{description}\n\n{work_link}',
         'due_date_time': True,
         'due_date': int(due_datetime.timestamp() * 1000) if due_datetime else None,
-        'priority': check_priority(due_datetime),
+        'priority': check_priority(due_datetime) if due_datetime else 4
     }
 
     r = requests.post(url=url, json=new_task, headers=request_header)
@@ -41,13 +41,13 @@ def check_priority(due_date):
     diff = datetime.today() - due_date
 
     if diff.days < 15:
-        return 4
-    elif 15 < diff.days < 20:
-        return 3
-    elif 20 < diff.days < 30:
-        return 2
-    else:
         return 1
+    elif 15 < diff.days < 20:
+        return 2
+    elif 20 < diff.days < 30:
+        return 3
+    else:
+        return 4
 
 
 def delete_task_in_clickup(task_id):
@@ -79,12 +79,11 @@ def create_list(course):
     }
 
     new_list = {
-        'name': course['name'],
-        'content': course['section']
+        'name': course['name']
     }
 
     r = requests.post(url=url, json=new_list, headers=request_header)
-
+    print(r.json())
     if r.status_code == 200:
         data = r.json()
 
