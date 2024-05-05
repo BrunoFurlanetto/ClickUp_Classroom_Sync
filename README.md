@@ -120,3 +120,20 @@ transfer between platforms and optimize class and task management.
 If you have any questions or encounter issues, feel free to refer to the
 project documentation or contact the maintenance team. Enjoy using the system
 to enhance your student experience!
+
+## Future features
+
+This synchronizer is constantly evolving to meet the needs of users. Below are some 
+of the features we are considering implement in the future:
+
+1. **Graphical interface**: One of the first features being considered, is the
+implementation of a graphical interface to facilitate both the registration of API 
+KEYs and views of the latest tasks that were found on Google Classroom and which 
+were added to ClickUp.
+2. **Increase in notifications**: An increase in the number of notifications and not
+just when sync starts.
+3. **Urgent Check and WhatsApp Messages**: Lastly, it is being considered is the
+implementation of a verification of activities already registered in the ClickUp and
+with this the sending of messages via WhatsApp reminding you of the delivery date of
+the activity. At this stage, the change of urgency status of the task according to
+the proximity to the task delivery date.
