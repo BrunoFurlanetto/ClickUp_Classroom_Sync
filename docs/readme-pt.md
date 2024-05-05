@@ -118,3 +118,21 @@ Se você tiver alguma dúvida ou encontrar problemas, sinta-se à vontade para
 consultar o documentação do projeto e/ou entrar em contato com a equipe de 
 manutenção. Divirta-se usando o sistema para aprimorar sua experiência de 
 estudante!
+
+## Funcionalidades futuras
+
+Este sincronizador está constantemente evoluindo para atender às necessidades dos 
+usuários. Abaixo estão algumas das funcionalidades que estamos considerando 
+implementar no futuro:
+
+1. **Interface gráfica**: Uma das primeiras funcionalidades que está sendo considerado,
+é a implementação de uma interface gráfica para facilitar tanto o cadastro das API KEY
+quanto para as vizualizações das ultimas tarefas que foram encontradas no Google
+Classroom e que foram adicionadas no ClickUp.
+2. **Aumento das notificações**: Também está sendo considerado o aumento do número de
+notificações e não apenas quando a sincronização é iniciada.
+3. **Verificação de urgênca e Mensagens pelo WhatsApp**: Por último, está sendo 
+considerado é a implementação de uma verificação das atividades já cadastradas no
+ClickUp e com isto o envio de mensagens via WhatsApp lembrando da data de entrega da
+atividade. Nesta etapa também será implementado a alteração de status de urgência da
+tarefa conforme a proximidade com a data de entrega da tarefa.
