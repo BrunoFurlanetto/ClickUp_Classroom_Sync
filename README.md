@@ -22,7 +22,7 @@ To read the documentation in Portuguese [click here](https://github.com/BrunoFur
 ```bash
 git clone https://github.com/BrunoFurlanetto/ClickUp_Classroom_Sync.git
 
-cd google-classroom-clickup-sync
+cd ClickUp_Classroom_Sync
 ```
 
 2. Create a virtual environment:
