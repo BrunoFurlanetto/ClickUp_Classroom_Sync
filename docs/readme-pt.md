@@ -17,9 +17,9 @@ dados entre o Google Classroom e o ClickUp.
 
 1. Clone o repositório do projeto:
 ```bash
-git clone https://github.com/your-username/google-classroom-clickup-sync.git
+git clone https://github.com/BrunoFurlanetto/ClickUp_Classroom_Sync.git
 
-cd google-classroom-clickup-sync
+cd ClickUp_Classroom_Sync
 ```
 
 2. Crie um ambiente virtual:
